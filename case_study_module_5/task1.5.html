@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+
+<h1 style="color: #4CAF50;align-content: center">List Customer</h1>
+
+<div style="align-content: center"><a class="btn btn-info" href="/customer/create">Add customer
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
+         viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+</a></div>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <form class="d-flex" method="get" action="/customer/list">
+
+            <input class="form-control me-2" type="search" placeholder="Search Name Customer" aria-label="Search Name Customer" name="nameSearch" th:value="${nameSearch}">
+
+
+            <input class="form-control me-2" type="search" placeholder="Search Email Customer" aria-label="Search Email Customer" name="emailSearch" th:value="${emailSearch}">
+
+
+            <input class="form-control me-2" type="search" placeholder="Search Tpye Customer" aria-label="Search Address Customer" name="customerType" th:value="${customerType}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+
+        </form>
+    </div>
+</nav>
+
+<table class="table table-success table-striped">
+    <tr>
+        <td>STT</td>
+        <td>Tên Khách Hàng</td>
+        <td>Ngày Sinh</td>
+        <td>Giới Tính</td>
+        <td>Email</td>
+        <td>Địa Chỉ</td>
+        <td>Loại Khách</td>
+        <td>Sửa</td>
+        <td>Xóa</td>
+        <td>Xem dịch vụ đi kèm</td>
+    </tr>
+    <tr th:each="customer,index : ${listCustomer}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.dateOfBirth}"></td>
+        <td th:if="${customer.gender==1}">Male</td>
+<!--        <td th:if="${customer.gender==0}">Female</td>-->
+<!--        <td th:if="${customer.gender==2}">LGBT</td>-->
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.address}"></td>
+        <td th:text="${customer.customerType.name}"></td>
+        <td><a th:href="@{/customer/{id}-update(id=${customer.id})}"><button class="btn btn-info">Sửa</button></a></td>
+
+                <td><button th:attr="onclick=|deleteCustomer('${customer.id}', '${customer.name}')|"
+                       class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                       data-bs-target="#deleteCustomer">Xóa</button></td>
+<!--        <td><input type="checkbox" th:attr="onclick=|deleteCustomer('${customer.id}')|" data-bs-target="#deleteCustomer"/>Delete</td>-->
+
+        <td><a th:href="@{/customer/{id}-view(id=${customer.id})}" class="btn btn-success">Dịch vụ đi kèm</a></td>
+    </tr>
+</table>
+<div style="text-align: center">
+
+    <a th:href="@{/customer/list/(page = ${listCustomer.number -1 },nameSearch=${nameSearch},emailSearch=${emailSearch},customerType=${customerType})}"
+       th:if="${listCustomer.hasPrevious()}">Previous</a>
+    <span th:text="${listCustomer.number+1}"></span>/
+    <span th:text="${listCustomer.totalPages}"></span>
+    <a th:href="@{/customer/list/(page = ${listCustomer.number +1},nameSearch=${nameSearch},emailSearch=${emailSearch},customerType=${customerType})}"
+       th:if="${listCustomer.hasNext()}">Next</a>
+</div>
+<!-- Xóa modal thường-->
+<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modalCSS">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form th:action="@{/customer/delete}">
+                <div class="modal-body">
+                    <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
+                    <input type="hidden" name="idDelete" id="idDelete" readonly/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Xóa mà Bảo và Đức Dày Công Nghiên Cứu-->
+
+<!--<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content modalCSS">-->
+<!--            <div class="modal-header">-->
+<!--                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+
+<!--            <form th:action="@{/customer/delete}">-->
+<!--                <div class="modal-body">-->
+<!--                    <input type="hidden" name="arrDelete" id="arrDelete" readonly/>-->
+<!--                </div>-->
+
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
+<!--                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script>
+    function deleteCustomer(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerText = name;
+        debugger
+    }
+</script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</html>
