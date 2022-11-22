@@ -6,6 +6,7 @@ import { StudentComponent } from './ss2_angualar_overview/demo/student/student.c
 import { CalculatorComponent } from './ss2_angualar_overview/exercise/exercise_01/calculator/calculator.component';
 import {FormsModule} from "@angular/forms";
 import { ColorComponent } from './ss2_angualar_overview/exercise/exercise_02/color/color.component';
+import { Student3Component } from './ss3_angualar_template/demo/student3/student3.component';
 
 
 
@@ -15,6 +16,7 @@ import { ColorComponent } from './ss2_angualar_overview/exercise/exercise_02/col
     StudentComponent,
     CalculatorComponent,
     ColorComponent,
+    Student3Component,
   ],
   imports: [
     BrowserModule,
