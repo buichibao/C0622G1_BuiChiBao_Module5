@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Login</h2>
+  <form [formGroup]="rfUser" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input formControlName="email" type="text" class="form-control"
+             [ngClass]="rfUser.controls['email'].invalid ? 'is-invalid':'is-valid'">
+      <div class="invalid-feedback">
+        <div *ngIf="rfUser.controls['email'].hasError('required')
+             && (rfUser.controls['email'].touched)">
+            Email không được bỏ trống
+        </div>
+        <div *ngIf="rfUser.controls['email'].hasError('email')">
+           Email đúng định dạng
+        </div>
+    </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input formControlName="password" type="password" class="form-control">
+      <div class="invalid-feedback">
+        <div *ngIf="rfUser.controls['password'].hasError('required')
+             && (rfUser.controls['password'].touched)">
+          Nhập mật khẩu
+        </div>
+        <div *ngIf="rfUser.controls['password'].hasError('minlength')">
+          Mật khẩu phải có ít nhất 6 kí tự
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </form>
+
+</div>
