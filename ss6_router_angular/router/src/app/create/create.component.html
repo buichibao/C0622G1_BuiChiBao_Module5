@@ -1,0 +1,58 @@
+<div class="row">
+   <div class="card border-success">
+     <h3 class="card-header bg success">Create</h3>
+     <div class="card-body">
+       <form [formGroup]="rfStudent" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+         <div class="mb-3">
+           <label class="form-label">Student Name</label>
+           <input formControlName="name"  type="email" class="form-control" id="name"
+           [ngClass]="rfStudent.controls['name'].invalid? 'is-invalid':'is-valid'">
+           <div class="invalid-feedback is-invalid"
+                 *ngIf="rfStudent.controls['name'].invalid &&(rfStudent.controls['name'].dirty||rfStudent.controls['name'].touched)">
+             <div *ngIf="rfStudent.controls['name'].hasError('required')">
+               Tên không được bỏ trống
+             </div>
+             <div *ngIf="rfStudent.controls['name'].hasError('minlength')">
+               Tên phải có độ dài lớn hơn 5 kí tự
+             </div>
+           </div>
+         </div>
+         <div class="mb-3">
+           <label class="form-label">Point</label>
+           <input formControlName="point" type="number" class="form-control"
+                  [ngClass]="rfStudent.controls['name'].invalid? 'is-invalid':'is-valid'">
+           <div class="invalid-feedback is-invalid"
+                *ngIf="rfStudent.controls['point'].invalid &&(rfStudent.controls['point'].dirty||rfStudent.controls['point'].touched)">
+             <div *ngIf="rfStudent.controls['point'].hasError('required')">
+               Điểm không được bỏ trống
+             </div>
+             <div *ngIf="rfStudent.controls['point'].hasError('min')">
+               Điểm phải lớn hơn 0
+             </div>
+             <div *ngIf="rfStudent.controls['point'].hasError('max')">
+               Điểm phải bé hơn 100
+             </div>
+           </div>
+         </div>
+         <div class="mb-3">
+           <label class="form-label form">Gender</label>
+           <div>
+             <div class="form-check form-check-inline">
+               <input class="form-check-input" type="radio" formControlName="gender" id="inLineRadio1" value="1">
+               <label class="form-check-label" for="inLineRadio1">Male</label>
+             </div>
+             <div class="form-check form-check-inline">
+               <input class="form-check-input" type="radio" formControlName="gender" id="inLineRadio2" value="2">
+               <label class="form-check-label" for="inLineRadio1">Famale</label>
+             </div>
+             <div class="form-check form-check-inline">
+               <input class="form-check-input" type="radio" formControlName="gender" id="inLineRadio0" value="0">
+               <label class="form-check-label" for="inLineRadio0">LGBT</label>
+             </div>
+           </div>
+         </div>
+         <button type="submit" class="btn btn-primary">Submit</button>
+       </form>
+     </div>
+   </div>
+</div>

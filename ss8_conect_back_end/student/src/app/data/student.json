@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Dorian Salliss",
+      "gender": 2,
+      "point": 97
+    },
+    {
+      "name": "No Name",
+      "point": 100,
+      "gender": "2",
+      "id": 2
+    },
+    {
+      "name": "No Name",
+      "point": 100,
+      "gender": "2",
+      "id": 3
+    }
+  ]
+}

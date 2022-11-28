@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-6">
+  <div class="col-12">
+    <div class="class border-info">
+      <h3 class="card-header bg-info">Detail</h3>
+      <div class="card-body">
+        <div *ngIf="worDetail;else noData">
+          <div>
+            <div>{{worDetail.eng}} dịch thành :{{worDetail.vn}}</div>
+          </div>
+        </div>
+        <ng-template #noData>
+          <p>No data</p>
+        </ng-template>
+        <button type="button" class="btn btn-primary" routerLink="/word">Back</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+

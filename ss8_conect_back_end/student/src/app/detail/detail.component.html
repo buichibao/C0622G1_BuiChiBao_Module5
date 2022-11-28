@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-12">
+    <div class="class border-info">
+      <h3 class="card-header bg-info">Detail</h3>
+      <div class="card-body">
+        <div *ngIf="studentDetail;else noData">
+          <div>
+            <div>Name :{{studentDetail.name}}</div>
+          </div>
+          <div>
+            <div>Gender :{{studentDetail.gender}}</div>
+          </div>
+          <div>
+            <div>Point :{{studentDetail.point}}</div>
+          </div>
+        </div>
+        <ng-template #noData>
+          <p>No data</p>
+        </ng-template>
+        <button type="button" class="btn btn-primary" routerLink="/list">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
