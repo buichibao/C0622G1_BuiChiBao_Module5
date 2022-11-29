@@ -18,9 +18,12 @@ export class DetailComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     this.index = this._activatedRoute.snapshot.params['index'];
-    this.studentDetail = this._studentService.getStudentByIndex(this.index);
+    this._studentService.findById(this.index).subscribe(
+      data =>{
+        this.studentDetail =data;
+      }
+    )
   }
 }

@@ -11,10 +11,13 @@
             <th>Gender</th>
             <th>Point</th>
             <th>Result</th>
+            <th>Delete</th>
+            <th>View</th>
+            <th>Update</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let item of students;let i = index" (click)="gotoDetail(i)">
+          <tr *ngFor="let item of students;let i = index">
             <td>{{i+1}}</td>
             <td>{{item.name}}</td>
             <td [ngSwitch]="item.gender">
@@ -28,6 +31,15 @@
               <ng-template #elseBlock>
                 <span>Fail</span>
               </ng-template>
+            </td>
+            <td>
+              <a class="btn" routerLink="/delete/{{item.id}}">Delete</a>
+            </td>
+            <td>
+              <a class="btn" routerLink="/detail/{{item.id}}">View</a>
+            </td>
+            <td>
+              <a class="btn" routerLink="/update/{{item.id}}">Update</a>
             </td>
           </tr>
           </tbody>

@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
 
+const API_URL = `${environment.api_url}`
 @Injectable({
   providedIn: 'root'
 })
@@ -20,16 +21,30 @@ export class StudentService {
 
   save(student:Student):Observable<Student>{
     return  this._httpClient.post<Student>(
-      environment.api_url,student
-    );
+      API_URL,student);
   }
 
-  getStudentByIndex(index: number) {
-    return this._student[index];
+  update(student:Student):Observable<Student>{
+    return this._httpClient.patch<Student>(
+      API_URL + '/' +student.id ,student);
   }
+
   findAll():Observable<Student[]>{
+    console.log(API_URL);
     return this._httpClient.get<Student[]>(
-      environment.api_url);
+      API_URL);
   }
+
+
+  findById(id: number): Observable<Student> {
+    return this._httpClient.get<Student>(API_URL + '/' + id);
+  }
+
+
+  delete(student:Student):Observable<Student>{
+    return this._httpClient.delete<Student>(
+      API_URL + '/' +student.id);
+  }
+
 
 }

@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9728fbc-4dc4-4543-8b1f-cb3ca970f126" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/src/app/model/Product.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-    </list>
+    <list default="true" id="a9728fbc-4dc4-4543-8b1f-cb3ca970f126" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +33,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="2I5PPAlhKET8omQ5Ws7p0WMVOaY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -76,6 +69,7 @@
       <workItem from="1669468447636" duration="1342000" />
       <workItem from="1669471414551" duration="5324000" />
       <workItem from="1669477230150" duration="164000" />
+      <workItem from="1669626384752" duration="6000" />
     </task>
     <servers />
   </component>

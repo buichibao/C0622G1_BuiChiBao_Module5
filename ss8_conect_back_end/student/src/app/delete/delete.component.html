@@ -1,1 +1,29 @@
-<p>delete works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="class border-info">
+      <h3 class="card-header bg-info">Delete</h3>
+      <div class="card-body">
+        <div *ngIf="student;else noData">
+<!--          <div>-->
+<!--            <div>Id :{{student.id}}</div>-->
+<!--          </div>-->
+          <div>
+            <div>Name :{{student.name}}</div>
+          </div>
+          <div>
+            <div>Gender :{{student.gender}}</div>
+          </div>
+          <div>
+            <div>Point :{{student.point}}</div>
+          </div>
+        </div>
+        <ng-template #noData>
+          <p>No data</p>
+        </ng-template>
+        <button type="button" class="btn btn-primary" routerLink="/list">Back</button>
+        <button type="button" class="btn btn-primary" (click)="deleteStudent(student)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

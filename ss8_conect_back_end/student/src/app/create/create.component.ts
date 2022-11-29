@@ -28,7 +28,7 @@ export class CreateComponent implements OnInit {
         Validators.min(0),
         Validators.max(100)
       ]],
-      gender:[]
+      gender:[,[]]
 
     })
   }
